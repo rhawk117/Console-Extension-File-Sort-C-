@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using static System.Console;
 
 namespace UserUI.ConsoleMenus
 {
     public class Menu
     {
-        private string[] Options;
+        private List<string> Options;
         private string Prompt { get; set; }
 
         private int selectedIndex;
@@ -15,15 +16,15 @@ namespace UserUI.ConsoleMenus
             set
             {
                 if (value < 0)
-                    selectedIndex = Options.Length - 1;
-                else if (value >= Options.Length)
+                    selectedIndex = Options.Count - 1;
+                else if (value >= Options.Count)
                     selectedIndex = 0;
                 else
                     selectedIndex = value;
             }
         }
 
-        public Menu(string[] options, string prompt)
+        public Menu(List<string> options, string prompt)
         {
             this.Options = options;
             this.Prompt = prompt;
@@ -34,7 +35,7 @@ namespace UserUI.ConsoleMenus
         {
             Clear();
             WriteLine(Prompt);
-            for (int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < Options.Count; i++)
             {
 
                 string currentOption = Options[i], prefix = "";
