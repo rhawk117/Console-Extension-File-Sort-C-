@@ -13,7 +13,7 @@ namespace UserUI
         static void Main(string[] args)
         {
             DirectoryInfo dir = InputCollector.GetDirectoryInput("Enter a directory path: ");
-            Sorter sortData = SorterManager.CollectSortData(dir);
+            Sorter sortData = SorterManager.GetData(dir);
             foreach (var ext in sortData.UniqueExtensions)
             {
                 Console.WriteLine(">>" + ext.Substring(1));

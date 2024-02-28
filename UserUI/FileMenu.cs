@@ -14,6 +14,7 @@ namespace UserUI
         private static void InfoBlock()
         {
             Clear();
+            WriteLine("[*] Sorting Data was succesfully collected [*]");
             WriteLine("[i] The following files listed below will be sorted [i]");
             WriteLine("[i] If you wish to remove a file from being sorted, press enter [i]");
             WriteLine("[i] If you wish to proceed sort the files, select at the bottom >> Continue [i]");
@@ -32,9 +33,10 @@ namespace UserUI
         }
         public static void Start(Sorter aSorter)
         {
-            InfoBlock();
             Menu fileMenu = Generate(aSorter);
             string selectedFile = fileMenu.Run();
+            handleSelection(selectedFile, aSorter);
+
 
         }
         private static void handleSelection(string selectedFile, Sorter aSorter)
@@ -47,12 +49,14 @@ namespace UserUI
             }
             else if (selectedFile != "[ Continue ]" && aSorter.DirectoryFiles.Count == 1)
             {
-
+                WriteLine("Cannot remove the only file from the data set");
+                Start(aSorter);
             }
             else
             {
-
+                return;
             }
+
         }
 
 

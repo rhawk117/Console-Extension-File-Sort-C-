@@ -20,10 +20,5 @@ namespace UserUI
             return selectedOption == "YES";
         }
 
-
-
-
-
-
     }
 }
