@@ -6,7 +6,7 @@ namespace UserUI.ConsoleMenus
 {
     public class Menu
     {
-        private List<string> Options;
+        public List<string> Options { get; set; }
         private string Prompt { get; set; }
 
         private int selectedIndex;

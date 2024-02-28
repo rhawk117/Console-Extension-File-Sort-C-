@@ -18,7 +18,8 @@ namespace UserUI
             {
                 Console.WriteLine(">>" + ext.Substring(1));
             }
-
+            SorterManager.DisplayAllFiles(sortData);
+            SorterManager.MoveAll(sortData);
         }
     }
 }
