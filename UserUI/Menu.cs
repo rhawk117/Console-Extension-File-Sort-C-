@@ -17,8 +17,10 @@ namespace UserUI.ConsoleMenus
             {
                 if (value < 0)
                     selectedIndex = Options.Count - 1;
+
                 else if (value >= Options.Count)
                     selectedIndex = 0;
+
                 else
                     selectedIndex = value;
             }
@@ -61,7 +63,6 @@ namespace UserUI.ConsoleMenus
             {
                 Clear();
                 Show();
-
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
                 switch (keyPressed)
@@ -74,9 +75,10 @@ namespace UserUI.ConsoleMenus
                         SelectedIndex++;
                         break;
                 }
-            } while (keyPressed != ConsoleKey.Enter);
+            }
+            while (keyPressed != ConsoleKey.Enter);
 
-            return this.Options[selectedIndex];
+            return Options[selectedIndex];
         }
     }
 }

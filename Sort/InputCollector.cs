@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using static System.Console;
 
@@ -13,7 +11,7 @@ namespace Sort
         public static DirectoryInfo GetDirectoryInput(string prompt)
         {
             string path = "";
-            while (!ValidateDirInput(path))
+            while (ValidateDirInput(path) == false)
             {
                 WriteLine(prompt);
                 path = ReadLine();
@@ -22,21 +20,19 @@ namespace Sort
         }
         private static bool ValidateDirInput(string dir)
         {
-            if (string.IsNullOrEmpty(dir))
-            {
-                return false;
-            }
-            if (!Directory.Exists(dir))
+            if (string.IsNullOrEmpty(dir)) return false;
+
+            if (Directory.Exists(dir) == false)
             {
                 WriteLine("[!] Directory path provided does not exist [!]");
                 return false;
             }
-            if (!Directory.EnumerateFiles(dir).Any())
+            if (Directory.EnumerateFiles(dir).Any() == false)
             {
-                WriteLine("[!] Directory provided does not contain any files [!]");
+                WriteLine("[!] The directory path provided does not contain any files [!]");
                 return false;
             }
-            WriteLine("[i] Directory input is valid [i]");
+            WriteLine("[i] Directory path inputted is valid [i]");
             return true;
         }
 
