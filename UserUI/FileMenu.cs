@@ -1,7 +1,10 @@
 ﻿using Sort;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using UserUI.ConsoleMenus;
@@ -19,6 +22,31 @@ namespace UserUI
         /// </summary>
         /// <param name="aSorter"></param>
         /// <returns></returns>
+
+        private static string _infoBlock = @"
+       *=====================================================================*
+                                    << NOTE >>
+
+          [i] The sorting data was successfully collected! For your convience &
+              to avoid any unwanted sorting, you can specify exclusions 
+
+          >> If you wish to exclude a file, press enter on a highlighted file 
+          
+          >> To proceed with sorting, select Continue at the bottom of the menu
+          
+          >> If you wish to exit the program, select Exit
+
+                        [ *** press enter to continue *** ]
+
+        *=====================================================================*
+                 
+        
+        ";
+        public static void MenuInfo()
+        {
+            WriteLine(_infoBlock);
+            ReadKey();
+        }
         private static Menu Generate(Sorter aSorter)
         {
             List<string> fileNames = aSorter.DirectoryFiles
@@ -27,10 +55,10 @@ namespace UserUI
 
             fileNames.Add("[ Continue ]");
             fileNames.Add("[ Exit ]");
-            Menu FileMenu = new Menu(fileNames, "Listed below are the files being moved");
-            InfoBlock();
+            Menu FileMenu = new Menu(fileNames, "[ Listed Below are the Files That Will Be sorted ]");
             return FileMenu;
         }
+
         /// <summary>
         /// Start:
         /// 
@@ -88,26 +116,10 @@ namespace UserUI
         private static void RemoveMessage(string removedItem, int itemsLeft)
         {
             WriteLine($"[*] Removing => {removedItem} from the list of files to process [*]");
-            WriteLine($"[i] {itemsLeft} files remain press enter to continue program [i]");
+            WriteLine($"[i] {itemsLeft} files remain, press enter to continue program [i]");
             ReadKey();
         }
 
-        /// <summary>
-        /// InfoBlock:
-        /// 
-        /// console dialogue to let the user know what is going on
-        /// (idk maybe it's confusing for the first time)
-        /// </summary>
-        private static void InfoBlock()
-        {
-            Clear();
-            WriteLine("[*] Sorting Data was succesfully collected [*]");
-            WriteLine("[i] The following files listed below will be sorted [i]");
-            WriteLine("[i] If you wish to remove a file from being sorted, press enter [i]");
-            WriteLine("[i] If you wish to proceed sort the files, select at the bottom >> Continue [i]");
-            WriteLine("\n\t\t[ PRESS ENTER TO CONTINUE ]\n");
-            ReadKey();
-        }
         private static void invalidRemove(Sorter aSorter)
         {
             WriteLine("[!] ERROR: Cannot remove the only file from the data set, please select another action [!]");

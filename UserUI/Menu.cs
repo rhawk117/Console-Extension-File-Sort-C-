@@ -28,9 +28,9 @@ namespace UserUI.ConsoleMenus
 
         public Menu(List<string> options, string prompt)
         {
-            this.Options = options;
-            this.Prompt = prompt;
-            this.SelectedIndex = 0;
+            Options = options;
+            Prompt = prompt;
+            SelectedIndex = 0;
         }
 
         private void Show()

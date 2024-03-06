@@ -138,6 +138,8 @@ namespace Sort
         public static void DisplayStats(int filesMoved, int totalFiles)
         {
             WriteLine($"[i] Sorting Complete & Succesfully moved {filesMoved} files out of {totalFiles} total files [i]");
+            WriteLine("[ *** Press Enter To Continue *** ]");
+            ReadKey();
         }
 
 

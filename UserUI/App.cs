@@ -73,6 +73,9 @@ namespace UserUI
                 return;
             }
             userSort.MoveAll();
+            Console.WriteLine("[i] Sorting Complete returning to the Main Menu... [i]");
+            Thread.Sleep(5000);
+            Run();
         }
         private static Sorter GetFolderSelection()
         {
@@ -84,6 +87,7 @@ namespace UserUI
         }
         private static bool AlterDataAndConfirm(Sorter userSort)
         {
+            FileMenu.MenuInfo();
             FileMenu.Start(userSort);
             int fileCount = userSort.DirectoryFiles.Count;
             string path = userSort.DirectoryPath;
@@ -93,12 +97,6 @@ namespace UserUI
         {
             if (SorterManager.CheckData(aSort)) return;
 
-            Console.WriteLine("lol");
-            foreach (FileInfo file in aSort.DirectoryFiles)
-            {
-                Console.WriteLine("File " + file.Name);
-            }
-            Thread.Sleep(4000);
             string Prompt = "[!] There was an error with the data [!]\n[?] Retry sorting process [?]";
             bool Retry = ConfirmationMenu.Start(Prompt);
 
@@ -107,12 +105,19 @@ namespace UserUI
 
         }
 
+        /// <summary>
+        /// ConfirmMove
+        /// 
+        /// Prompts the user to confirm the sorting action
+        /// and returns true if user confirms
+        /// </summary>
+        /// <param name="fileCount"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private static bool ConfirmMove(int fileCount, string path)
         {
             string Prompt = $"[?] Sort {fileCount} in {path} [?]";
-            bool Confirm = ConfirmationMenu.Start(Prompt);
-            return Confirm;
-
+            return ConfirmationMenu.Start(Prompt); ;
         }
 
 
