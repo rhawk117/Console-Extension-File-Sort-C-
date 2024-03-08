@@ -65,13 +65,9 @@ namespace Sort
         private static void badDataPrompts(Sorter aSorter, string trailer)
         {
             if (aSorter.DirectoryFiles.Count == 0)
-            {
                 WriteLine("[!] No files were found in directory [!]" + trailer);
-            }
             if (aSorter.UniqueExtensions.Count == 0)
-            {
                 WriteLine("[!] No unique file extensions found [!]" + trailer);
-            }
         }
         /// <summary>
         /// SafeMove:
@@ -92,7 +88,7 @@ namespace Sort
             }
             catch (IOException ex)
             {
-                WriteLine($"[!] Error moving file: {file.Name} [!]");
+                WriteLine($"[!] IO Error Occured moving file: {file.Name} [!]");
                 WriteLine($"[!] {ex.Message} [!]\n\n");
             }
             catch (Exception e)
@@ -141,10 +137,6 @@ namespace Sort
             WriteLine("[ *** Press Enter To Continue *** ]");
             ReadKey();
         }
-
-
-
-
 
 
     }

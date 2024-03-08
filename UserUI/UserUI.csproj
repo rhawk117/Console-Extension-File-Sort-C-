@@ -44,12 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="ConfirmationMenu.cs" />
-    <Compile Include="FileMenu.cs" />
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="AppMenus\ConfirmationMenu.cs" />
+    <Compile Include="AppMenus\FileMenu.cs" />
+    <Compile Include="AppMenus\MainMenu.cs" />
+    <Compile Include="AppMenus\Menu.cs" />
+    <Compile Include="AppMenus\PathMenu.cs" />
+    <Compile Include="EventHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

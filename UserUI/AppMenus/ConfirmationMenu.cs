@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UserUI.ConsoleMenus;
+using UserUI;
 
 namespace UserUI
 {
@@ -20,8 +20,6 @@ namespace UserUI
             string selectedOption = confirmationMenu.Run();
             return selectedOption == "YES";
         }
-
-
 
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static System.Console;
 
-namespace UserUI.ConsoleMenus
+namespace UserUI
 {
     public class Menu
     {
@@ -32,7 +32,6 @@ namespace UserUI.ConsoleMenus
             Prompt = prompt;
             SelectedIndex = 0;
         }
-
         private void Show()
         {
             Clear();
@@ -77,7 +76,6 @@ namespace UserUI.ConsoleMenus
                 }
             }
             while (keyPressed != ConsoleKey.Enter);
-
             return Options[selectedIndex];
         }
     }

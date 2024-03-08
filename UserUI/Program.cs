@@ -12,7 +12,26 @@ namespace UserUI
     {
         static void Main(string[] args)
         {
-            App.Run();
+
+            try
+            {
+                UserPathData Info = PathManager.Load();
+                try
+                {
+                    App.Run(Info);
+                }
+                finally
+                {
+                    PathManager.SaveChanges(Info);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[!] An Error Occured while loading your previously saved paths [!]");
+                Console.WriteLine($"[!] {e.Message} [!]");
+                Console.WriteLine(e.StackTrace);
+            }
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UserUI.ConsoleMenus;
+
 
 namespace UserUI
 {
@@ -20,22 +20,16 @@ namespace UserUI
         ";
         private static Menu Generate()
         {
-            List<string> options = new List<string> { "Start", "Help", "Exit" };
-            string prompt = $"{_titleText}\n[ Select one of the following to continue ]";
-            return new Menu(options, prompt);
+            List<string> Options = new List<string> { "Start", "Help", "Exit" };
+            string Prompt = $"{_titleText}\n[ Select one of the following to continue ]";
+            return new Menu(Options, Prompt);
         }
         public static string Start()
         {
             Menu menu = Generate();
-            string selection = menu.Run();
-            return selection;
+            string Selection = menu.Run();
+            return Selection;
         }
-
-
-
-
-
-
 
     }
 }

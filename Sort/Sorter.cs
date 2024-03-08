@@ -24,8 +24,6 @@ namespace Sort
         /// 
         /// Using the data gathered, this method will attempt to move all the files
         /// and will keep a count of how many files were moved.
-        /// 
-        /// 
         /// </summary>
         /// <param name="aSort"></param>
         public void MoveAll()
@@ -70,9 +68,10 @@ namespace Sort
         /// <returns></returns>
         private bool IsLastExtension(FileInfo FileDeleted)
         {
-            return !DirectoryFiles
+            return !(DirectoryFiles
                 .Any(file => string
-                .Equals(file.Extension, FileDeleted.Extension, StringComparison.OrdinalIgnoreCase));
+                .Equals(file.Extension, FileDeleted.Extension, StringComparison.OrdinalIgnoreCase))
+           );
         }
 
 

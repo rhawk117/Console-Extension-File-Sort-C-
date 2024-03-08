@@ -1,13 +1,7 @@
 ﻿using Sort;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using UserUI.ConsoleMenus;
 using static System.Console;
 
 namespace UserUI
@@ -24,6 +18,7 @@ namespace UserUI
         /// <returns></returns>
 
         private static string _infoBlock = @"
+
        *=====================================================================*
                                     << NOTE >>
 
@@ -39,7 +34,6 @@ namespace UserUI
                         [ *** press enter to continue *** ]
 
         *=====================================================================*
-                 
         
         ";
         public static void MenuInfo()
@@ -103,7 +97,7 @@ namespace UserUI
             {
                 // user selected a file to delete and count > 1
                 aSorter.ReduceData(selectedFile);
-                RemoveMessage(selectedFile, aSorter.DirectoryFiles.Count);
+                removeMessage(selectedFile, aSorter.DirectoryFiles.Count);
                 Start(aSorter);
             }
         }
@@ -113,7 +107,7 @@ namespace UserUI
         /// </summary>
         /// <param name="removedItem"></param>
         /// <param name="itemsLeft"></param>
-        private static void RemoveMessage(string removedItem, int itemsLeft)
+        private static void removeMessage(string removedItem, int itemsLeft)
         {
             WriteLine($"[*] Removing => {removedItem} from the list of files to process [*]");
             WriteLine($"[i] {itemsLeft} files remain, press enter to continue program [i]");
@@ -125,10 +119,6 @@ namespace UserUI
             WriteLine("[!] ERROR: Cannot remove the only file from the data set, please select another action [!]");
             Start(aSorter);
         }
-
-
-
-
 
 
 
