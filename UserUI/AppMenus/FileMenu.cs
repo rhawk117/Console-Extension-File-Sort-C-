@@ -29,7 +29,6 @@ namespace UserUI
           
           >> To proceed with sorting, select Continue at the bottom of the menu
           
-          >> If you wish to exit the program, select Exit
 
                         [ *** press enter to continue *** ]
 
@@ -41,15 +40,15 @@ namespace UserUI
             WriteLine(_infoBlock);
             ReadKey();
         }
-        private static Menu Generate(Sorter aSorter)
+        private static Menu _Generate(Sorter aSorter)
         {
             List<string> fileNames = aSorter.DirectoryFiles
                 .Select(Files => Files.Name)
                 .ToList();
 
             fileNames.Add("[ Continue ]");
-            fileNames.Add("[ Exit ]");
-            Menu FileMenu = new Menu(fileNames, "[ Listed Below are the Files That Will Be sorted ]");
+            string Prompt = "[?] Select a file to exclude from sorting [?]";
+            Menu FileMenu = new Menu(fileNames, Prompt);
             return FileMenu;
         }
 
@@ -61,9 +60,9 @@ namespace UserUI
         /// <param name="aSorter"></param>
         public static void Start(Sorter aSorter)
         {
-            Menu fileMenu = Generate(aSorter);
+            Menu fileMenu = _Generate(aSorter);
             string selectedFile = fileMenu.Run();
-            handleSelection(selectedFile, aSorter);
+            _handleSelection(selectedFile, aSorter);
         }
 
         /// <summary>
@@ -77,27 +76,22 @@ namespace UserUI
         /// <param name="selectedFile"></param>
         /// <param name="aSorter"></param>
 
-        private static void handleSelection(string selectedFile, Sorter aSorter)
+        private static void _handleSelection(string selectedFile, Sorter aSorter)
         {
             if (selectedFile == "[ Continue ]")
             {
                 WriteLine("[i] Saving list of files to sort. Please confirm this action [i]");
                 return;
             }
-            else if (selectedFile == "[ Exit ]")
-            {
-                WriteLine("[i] Exiting program... [i]");
-                Environment.Exit(0);
-            }
             else if (aSorter.DirectoryFiles.Count <= 1)
             {
-                invalidRemove(aSorter);
+                _invalidRemove(aSorter);
             }
             else
             {
                 // user selected a file to delete and count > 1
                 aSorter.ReduceData(selectedFile);
-                removeMessage(selectedFile, aSorter.DirectoryFiles.Count);
+                _removeMessage(selectedFile, aSorter.DirectoryFiles.Count);
                 Start(aSorter);
             }
         }
@@ -107,14 +101,14 @@ namespace UserUI
         /// </summary>
         /// <param name="removedItem"></param>
         /// <param name="itemsLeft"></param>
-        private static void removeMessage(string removedItem, int itemsLeft)
+        private static void _removeMessage(string removedItem, int itemsLeft)
         {
             WriteLine($"[*] Removing => {removedItem} from the list of files to process [*]");
             WriteLine($"[i] {itemsLeft} files remain, press enter to continue program [i]");
             ReadKey();
         }
 
-        private static void invalidRemove(Sorter aSorter)
+        private static void _invalidRemove(Sorter aSorter)
         {
             WriteLine("[!] ERROR: Cannot remove the only file from the data set, please select another action [!]");
             Start(aSorter);

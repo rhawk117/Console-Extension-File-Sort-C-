@@ -52,7 +52,7 @@ namespace Sort
             }
             DirectoryFiles.Remove(FileDeleted);
             // file removed was the last file in list with the unique extension
-            if (IsLastExtension(FileDeleted))
+            if (_isLastExtension(FileDeleted))
             {
                 UniqueExtensions.Remove(FileDeleted.Extension);
             }
@@ -66,7 +66,7 @@ namespace Sort
         /// </summary>
         /// <param name="FileDeleted"></param>
         /// <returns></returns>
-        private bool IsLastExtension(FileInfo FileDeleted)
+        private bool _isLastExtension(FileInfo FileDeleted)
         {
             return !(DirectoryFiles
                 .Any(file => string

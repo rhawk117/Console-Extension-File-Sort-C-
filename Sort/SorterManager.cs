@@ -51,7 +51,7 @@ namespace Sort
             string postfix = "\n[!] Cannot proceed with sorting action [!]\n\n";
             if (aSorter.IsSortable) return true;
 
-            badDataPrompts(aSorter, postfix);
+            _badDataPrompts(aSorter, postfix);
             return false;
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Sort
         /// </summary>
         /// <param name="aSorter"></param>
         /// <param name="trailer"></param>
-        private static void badDataPrompts(Sorter aSorter, string trailer)
+        private static void _badDataPrompts(Sorter aSorter, string trailer)
         {
             if (aSorter.DirectoryFiles.Count == 0)
                 WriteLine("[!] No files were found in directory [!]" + trailer);
@@ -82,7 +82,7 @@ namespace Sort
         {
             try
             {
-                Move(file, Destination);
+                _Move(file, Destination);
                 WriteLine($"[i] Sucessfully moved => {file.Name}[i]");
                 countMoves++;
             }
@@ -108,9 +108,9 @@ namespace Sort
         /// </summary>
         /// <param name="file"></param>
         /// <param name="Destination"></param>
-        private static void Move(FileInfo file, string Destination)
+        private static void _Move(FileInfo file, string Destination)
         {
-            string newPath = GetDestination(file.DirectoryName, Destination);
+            string newPath = _getDestination(file.DirectoryName, Destination);
             string newFilePath = Path.Combine(newPath, file.Name);
             file.MoveTo(newFilePath);
         }
@@ -124,7 +124,7 @@ namespace Sort
         /// <param name="dirName"></param>
         /// <param name="Destination"></param>
         /// <returns></returns>
-        private static string GetDestination(string dirName, string Destination)
+        private static string _getDestination(string dirName, string Destination)
         {
             string newPath = Path.Combine(dirName, Destination);
             if (Directory.Exists(newPath) == false)

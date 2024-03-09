@@ -16,7 +16,7 @@ namespace UserUI
         {
             DirectoryInfo dirChoice;
             string prompt = "[?] Enter the directory you would like to sort [?]";
-            bool canUseMenu = userPath.IsEmtpy == false;
+            bool canUseMenu = userPath.IsEmtpy() == false;
             if (canUseMenu)
             {
                 dirChoice = pathMenu(userPath, prompt);

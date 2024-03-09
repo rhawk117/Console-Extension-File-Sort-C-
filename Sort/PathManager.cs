@@ -16,7 +16,7 @@ namespace Sort
 
         private static string _filePath = Path.Combine(_folderPath, "pathData.json");
 
-        private static bool CreateAppDataFolder()
+        private static bool _createAppDataFolder()
         {
             if (Directory.Exists(_folderPath) == false)
             {
@@ -28,14 +28,14 @@ namespace Sort
 
         public static void SaveChanges(UserPathData Info)
         {
-            CreateAppDataFolder();
+            _createAppDataFolder();
             string newData = JsonConvert.SerializeObject(Info);
             File.WriteAllText(_filePath, newData);
         }
 
         public static UserPathData Load()
         {
-            if (CreateAppDataFolder() == false)
+            if (_createAppDataFolder() == false)
             {
                 return new UserPathData();
             }
@@ -48,7 +48,8 @@ namespace Sort
         }
         public static void DeleteInvalidItems(UserPathData Info)
         {
-            if (Info.IsEmtpy) return;
+            if (Info.IsEmtpy()) return;
+
             Info.RemoveInvalidEntries();
         }
 
