@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using static System.Console;
+using System.Threading;
 
 namespace UserUI
 {
@@ -74,6 +75,7 @@ namespace UserUI
                         SelectedIndex++;
                         break;
                 }
+                Thread.Sleep(100);
             }
             while (keyPressed != ConsoleKey.Enter);
             return Options[selectedIndex];

@@ -23,10 +23,9 @@ namespace UserUI
             }
             else
             {
-                dirChoice = GetManualInput(userPath);
+                dirChoice = _getManualInput(userPath);
             }
             Sorter userSort = SorterManager.GetData(dirChoice);
-            //ValidateSortData(userSort, MainMenu);
             return userSort;
         }
         private static DirectoryInfo pathMenu(UserPathData Info, string Prompt)
@@ -34,12 +33,26 @@ namespace UserUI
             string Selection = PathMenu.Start(Info.FetchBaseNames(), Prompt);
             if (Selection == "Input a Path")
             {
-                return GetManualInput(Info);
+                return _getManualInput(Info);
             }
-            return new DirectoryInfo(Info.GetPath(Selection));
+            string resolvedPath = _resolveBasename(Selection, Info);
+            if (resolvedPath == "")
+            {
+                return _getManualInput(Info);
+            }
+            return new DirectoryInfo(resolvedPath);
         }
-
-        private static DirectoryInfo GetManualInput(UserPathData Info)
+        private static string _resolveBasename(string Selection, UserPathData Info)
+        {
+            string resolvedPath = Info.GetPath(Selection);
+            if (Directory.Exists(resolvedPath) == false)
+            {
+                Console.WriteLine("[!] Previously inputted Path no longer exists, manual input required [!]");
+                return "";
+            }
+            return resolvedPath;
+        }
+        private static DirectoryInfo _getManualInput(UserPathData Info)
         {
             DirectoryInfo dirName = InputCollector.GetDirectoryInput("[?] Enter the name of the directory [?]");
             Console.WriteLine("[i] Saving directory inputted for future use [i]");

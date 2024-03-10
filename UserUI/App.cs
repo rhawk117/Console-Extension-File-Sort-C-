@@ -3,7 +3,7 @@ using System;
 
 namespace UserUI
 {
-    public class App
+    public static class App
     {
         public static void Run(UserPathData Info)
         {
@@ -17,8 +17,10 @@ namespace UserUI
                 EventHandler.SortUI(Run, Info);
 
             else if (UserSelect == "Help")
+            {
                 EventHandler.StartHelpUI();
-
+                Run(Info);
+            }
             else
                 EventHandler.AppExit(Info);
         }

@@ -31,7 +31,6 @@ namespace UserUI
             PathManager.SaveChanges(Info);
             Environment.Exit(0);
         }
-
         public static void SortUI(Action<UserPathData> MainMenu, UserPathData Info)
         {
             Sorter userSort = SortEvents.GetFolderSelection(MainMenu, Info);

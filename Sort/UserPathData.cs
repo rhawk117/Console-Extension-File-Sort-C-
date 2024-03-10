@@ -9,7 +9,7 @@ namespace Sort
     {
         public string Name { get; set; }
         public string Path { get; set; }
-        public bool IsValid => Directory.Exists(Path);
+        public bool IsValid() => Directory.Exists(Path);
     }
     public class UserPathData
     {
@@ -32,12 +32,14 @@ namespace Sort
                 Entries.Add(new Entry { Name = dirName, Path = dirPath }); // Add new entry
             }
         }
-        public void RemoveInvalidEntries() => Entries.RemoveAll(Items => Items.IsValid == false);
 
+        public void RemoveInvalidEntries() => Entries.RemoveAll(Items => Items.IsValid() == false);
         public string GetPath(string baseName)
         {
             Entry Selection = Entries.Find(Entries => Entries.Name == baseName);
+
             if (Selection == null) return null;
+
             return Selection.Path;
         }
         public List<string> FetchBaseNames() => Entries.Select(Entries => Entries.Name).ToList();
